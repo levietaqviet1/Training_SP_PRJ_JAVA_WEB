@@ -1,5 +1,5 @@
   <h3>Training_SP_PRJ_JAVA_WEB</h3><br/>
-  <a href="https://github.com/levietaqviet1/Training_SP_PRJ_JAVA_WEB/blob/main/Cai_Phan_Mem.md">
+  <a href="https://docs.google.com/document/d/1Mi02YIsiQXHejgpaFJeA2SNmVsmLNbUC/edit?usp=sharing&ouid=105808482418084757102&rtpof=true&sd=true">
    Tải phần mềm code và set up môi trường
   </a>  
   
