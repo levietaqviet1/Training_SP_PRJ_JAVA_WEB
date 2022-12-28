@@ -2,6 +2,7 @@
 # :notebook_with_decorative_cover: Table of Contents
 - [Tạo 1 class DBContext](#Tạo-1-class-DBContext)
 - [Ví dụ về 1 hàm class DAO có đẩy đủ CRUD](#Ví-dụ-về-1-hàm-class-DAO-có-đẩy-đủ-CRUD)
+    * Ví dụ riêng về Create ( tạo ) (#Ví-dụ-riêng-về-Create)
 # Training_SP_PRJ_JAVA_WEB
 
 Tải phần mềm code ở trên 
@@ -145,8 +146,7 @@ public class StudentDAO {
 
         } catch (Exception e) {
             System.out.println("" + e);
-        }
-
+        } 
     }
 
     public void updateStudent(Student student) {
@@ -194,4 +194,32 @@ public class StudentDAO {
     }
 
 }
+```
+##Ví dụ riêng về Create
+- [Đến Menu](#notebook_with_decorative_cover-Table-of-Contents)
+Sử dụng try-with-resources để tự động đóng PreparedStatement: Try-with-resources là một tính năng trong Java 8 cho phép bạn tự động đóng các đối tượng cần đóng sau khi sử dụng, nhờ đó bạn không cần phải viết mã đóng riêng cho chúng. 
+```java
+        public void insertStudent(Student student) {
+        String sql = "INSERT INTO [dbo].[Student]\n"
+                + "           ([Name]\n"
+                + "           ,[Date]\n"
+                + "           ,[Gender]\n"
+                + "           ,[ClassId])\n"
+                + "     VALUES\n"
+                + "           (?\n"
+                + "           ,?\n"
+                + "           ,?\n"
+                + "           ,?)";
+
+        try ( PreparedStatement pre = connection.prepareStatement(sql)) {
+            pre.setString(1, student.getName());
+            java.sql.Date DateSql = new java.sql.Date(student.getDate().getTime());
+            pre.setDate(2, DateSql);
+            pre.setBoolean(3, student.isGender());
+            pre.setInt(4, student.getClassRoom().getId());
+            pre.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("" + e);
+        } 
+    }
 ```
