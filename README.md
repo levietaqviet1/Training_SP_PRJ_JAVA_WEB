@@ -11,6 +11,7 @@ Tải phần mềm code ở trên bằng cách clone xuống hoặc tải file z
    * [Ví dụ riêng về Update ( sửa dữ liệu )](#Ví-dụ-riêng-về-Update)  
    * [Ví dụ riêng về Delete ( tạo )](#Ví-dụ-riêng-về-Delete)
 - [Ví dụ về 1 class Servlet Login Basic](#Ví-dụ-về-1-class-Servlet-Login-Basic)
+- [Ví dụ về 1 class Servlet Trả về 1 List Danh Sách](#Ví-dụ-về-1-class-Servlet-Trả-về-1-List-Danh-Sách)
 ## Lý Thuyết
 - [Đến Menu](#notebook_with_decorative_cover-Table-of-Contents)
 <br/>+ java.sql.Statement là một interface trong thư viện JDBC cung cấp các phương thức để thực hiện các câu lệnh SQL trên một cơ sở dữ liệu. Để sử dụng interface này, bạn cần tạo một đối tượng của interface bằng cách gọi phương thức createStatement() trên đối tượng Connection. Sau đó, bạn có thể sử dụng các phương thức của interface để thực hiện các câu lệnh SQL như SELECT, INSERT, UPDATE, DELETE, và các câu lệnh khác.
@@ -453,3 +454,42 @@ Trang Web gửi lên servlet demo trên
 ``` <input type="text" name="username" value="${cookie.user.value}" > ```và ```<input type="text" name="password" value="${cookie.pass.value}" > ```là các thẻ HTML để tạo ra các ô nhập cho người dùng nhập tên đăng nhập và mật khẩu. Các thuộc tính name và value đều được sử dụng để xác định tên của trường và giá trị mặc định của trường.
 
 ``` <input type="submit" value="Login" > ```là một thẻ HTML để tạo ra một nút đăng nhập. Người dùng có thể bấm vào nút này để gửi yêu cầu đăng nhập đến servlet.
+## Ví dụ về 1 class Servlet Trả về 1 List Danh Sách
+```java
+import dao.*; 
+import java.io.*;
+import java.util.*;
+import javax.servlet.ServletException;
+import javax.servlet.http.*;
+import model.*;
+ 
+public class ListServlet extends HttpServlet {
+  
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+         // kiểm tra xem đăng nhập chưa
+        if (request.getSession().getAttribute("user") == null) {
+            response.sendRedirect("Login.jsp");
+            return;
+        } 
+        //lay gia tri tu tầng DAO 
+        StudentDAO dao = new StudentDAO();
+        List<Student> listStudent = dao.getAll();
+        request.setAttribute("list", listStudent);
+        request.getRequestDispatcher("List_JSTL.jsp").forward(request, response);
+    } 
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+    }
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// 
+}
+```
+Đây là một ```servlet``` để xử lý yêu cầu lấy danh sách sinh viên từ cơ sở dữ liệu và hiển thị ra trình duyệt. Servlet này có các phương thức ```doGet()``` và ```doPost()``` để xử lý yêu cầu tương ứng.
+
+Trong phương thức ```doGet()```, đầu tiên servlet sẽ kiểm tra xem người dùng có đăng nhập hay không bằng cách lấy đối tượng ```HttpSession``` và kiểm tra xem có một thuộc tính ```user``` hay không. ```Nếu không có```, servlet sẽ ```chuyển hướng người dùng``` đến trang đăng nhập bằng cách sử dụng phương thức ```sendRedirect("Login.jsp")```.
+Sau đó, servlet sẽ tạo một đối tượng ```StudentDAO``` và sử dụng phương thức ```getAll()``` để lấy danh sách tất cả sinh viên từ cơ sở dữ liệu. Sau đó, servlet sẽ lưu danh sách sinh viên vào ```request``` bằng cách sử dụng phương thức ```setAttribute("list", listStudent)``` và sử dụng phương thức ```forward(request, response)``` để chuyển hướng người dùng đến trang hiển thị danh sách sinh viên (trang ```JSP List_JSTL.jsp```).
