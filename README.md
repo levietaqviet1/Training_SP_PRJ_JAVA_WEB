@@ -1,7 +1,7 @@
 # Training_SP_PRJ_JAVA_WEB
 
 Tải phần mềm code ở trên bằng cách clone xuống hoặc tải file zip của github<br/>
-Trong đó có 1 bài đầy đủ CRUD tên Project là DemoDatabase
+Trong đó có 1 bài đầy đủ CRUD tên Project là DemoDatabase ( Bài mầu nên code có thể chưa được tối ưu, nên xem tài liệu dưới làm lại )
 <!-- Table of Contents -->
 # :notebook_with_decorative_cover: Table of Contents
 - [Lý Thuyết](#Lý-Thuyết)
