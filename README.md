@@ -229,7 +229,7 @@ Sử dụng try-with-resources để tự động đóng PreparedStatement: Try-
 ## Ví dụ riêng về Read
 - [Đến Menu](#notebook_with_decorative_cover-Table-of-Contents) <br/>
 Sử dụng try-with-resources để tự động đóng PreparedStatement: Try-with-resources là một tính năng trong Java 8 cho phép bạn tự động đóng các đối tượng cần đóng sau khi sử dụng, nhờ đó bạn không cần phải viết mã đóng riêng cho chúng. 
-<br/>  Phương thức sau để lấy sinh viên theo ID:
+<br/>  Phương thức sau để lấy  <span style="color: brown;">1  sinh viên</span>  theo   <span style="color: brown;">ID</span>:
 ```java
 public Student getStudentById(int id) {
     Student student = null;
@@ -251,7 +251,7 @@ public Student getStudentById(int id) {
     return student;
 }
 ```
-<br/>  Phương thức sau để lấy lấy danh sách lớp học : 
+<br/>  Phương thức sau để lấy lấy <span style="color: brown;">danh sách lớp học</span> : 
 ```java
     public List<ClassRoom> getAllClassRooms() {
         List<ClassRoom> classRooms = new ArrayList<>();
