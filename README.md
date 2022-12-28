@@ -1,9 +1,9 @@
   <h3>Training_SP_PRJ_JAVA_WEB</h3><br/>
-  <a href="https://docs.google.com/document/d/1Mi02YIsiQXHejgpaFJeA2SNmVsmLNbUC/edit?usp=sharing&ouid=105808482418084757102&rtpof=true&sd=true">
+  <a href="https://docs.google.com/document/d/1Mi02YIsiQXHejgpaFJeA2SNmVsmLNbUC/edit?usp=sharing&ouid=105808482418084757102&rtpof=true&sd=true" target="_blank">
    Tải phần mềm code và set up môi trường
   </a>  
   
-Trong đó có 1 bài đầy đủ CRUD tên Project là DemoDatabase ( Bài mầu nên code có thể chưa được tối ưu, nên xem tài liệu dưới làm lại )
+Ở Trên có 1 bài đầy đủ CRUD tên Project là DemoDatabase ( Bài demo nên code có thể chưa được tối ưu, nên xem tài liệu dưới làm lại )
 <br/>
 <!-- Table of Contents -->
 # :notebook_with_decorative_cover: Table of Contents
