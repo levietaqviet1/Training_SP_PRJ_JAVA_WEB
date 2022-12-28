@@ -441,7 +441,7 @@ Trang Web gửi lên servlet demo trên
 </html>
 ```
 Đây là một trang JSP (Java Server Pages) để hiển thị một form đăng nhập cho người dùng. Trong trang này, có một số khái niệm cần giải thích:
-```jsp <%@page contentType="text/html" pageEncoding="UTF-8"%> ```là một directive để xác định kiểu nội dung của trang và mã hóa ký tự.
+``` <%@page contentType="text/html" pageEncoding="UTF-8"%> ```là một directive để xác định kiểu nội dung của trang và mã hóa ký tự.
 
 ```jsp <form action="login" method="post" > ```là một thẻ HTML để tạo ra một form đăng nhập. Thuộc tính action xác định đường dẫn đến servlet sẽ xử lý yêu cầu, và thuộc tính method xác định phương thức gửi yêu cầu (trong trường hợp này là post).
 
