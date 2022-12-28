@@ -443,13 +443,13 @@ Trang Web gửi lên servlet demo trên
 Đây là một trang JSP (Java Server Pages) để hiển thị một form đăng nhập cho người dùng. Trong trang này, có một số khái niệm cần giải thích:
 ``` <%@page contentType="text/html" pageEncoding="UTF-8"%> ```là một directive để xác định kiểu nội dung của trang và mã hóa ký tự.
 
-```jsp <form action="login" method="post" > ```là một thẻ HTML để tạo ra một form đăng nhập. Thuộc tính action xác định đường dẫn đến servlet sẽ xử lý yêu cầu, và thuộc tính method xác định phương thức gửi yêu cầu (trong trường hợp này là post).
+```<form action="login" method="post" > ```là một thẻ HTML để tạo ra một form đăng nhập. Thuộc tính action xác định đường dẫn đến servlet sẽ xử lý yêu cầu, và thuộc tính method xác định phương thức gửi yêu cầu (trong trường hợp này là post).
 
-```jsp ${cookie.user.value} và ${cookie.pass.value} ```là các EL (Expression Language) để lấy giá trị của cookie tên đăng nhập và mật khẩu.
-```jsp <% if (request.getSession().getAttribute("user")!=null) { %> ```là một khối scriptlet để kiểm tra xem người dùng có đăng nhập hay không. Nếu đã đăng nhập, sẽ chuyển hướng người dùng đến trang danh sách bằng cách sử dụng phương thức sendRedirect("list") của đối tượng HttpServletResponse.
+``` ${cookie.user.value} và ${cookie.pass.value} ```là các EL (Expression Language) để lấy giá trị của cookie tên đăng nhập và mật khẩu.
+``` <% if (request.getSession().getAttribute("user")!=null) { %> ```là một khối scriptlet để kiểm tra xem người dùng có đăng nhập hay không. Nếu đã đăng nhập, sẽ chuyển hướng người dùng đến trang danh sách bằng cách sử dụng phương thức sendRedirect("list") của đối tượng HttpServletResponse.
 
-```jsp <h1>Login!</h1> ```là một thẻ HTML để tạo ra một tiêu đề cấp 1 cho trang.
+``` <h1>Login!</h1> ```là một thẻ HTML để tạo ra một tiêu đề cấp 1 cho trang.
 
-```jsp <input type="text" name="username" value="${cookie.user.value}" > ```và ```jsp<input type="text" name="password" value="${cookie.pass.value}" > ```là các thẻ HTML để tạo ra các ô nhập cho người dùng nhập tên đăng nhập và mật khẩu. Các thuộc tính name và value đều được sử dụng để xác định tên của trường và giá trị mặc định của trường.
+``` <input type="text" name="username" value="${cookie.user.value}" > ```và ```<input type="text" name="password" value="${cookie.pass.value}" > ```là các thẻ HTML để tạo ra các ô nhập cho người dùng nhập tên đăng nhập và mật khẩu. Các thuộc tính name và value đều được sử dụng để xác định tên của trường và giá trị mặc định của trường.
 
-```jsp <input type="submit" value="Login" > ```là một thẻ HTML để tạo ra một nút đăng nhập. Người dùng có thể bấm vào nút này để gửi yêu cầu đăng nhập đến servlet.
+``` <input type="submit" value="Login" > ```là một thẻ HTML để tạo ra một nút đăng nhập. Người dùng có thể bấm vào nút này để gửi yêu cầu đăng nhập đến servlet.
