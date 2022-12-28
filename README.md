@@ -10,7 +10,7 @@ Tải phần mềm code ở trên bằng cách clone xuống hoặc tải file z
    * [Ví dụ riêng về Read ( đọc dữ liệu )](#Ví-dụ-riêng-về-Read)  
    * [Ví dụ riêng về Update ( sửa dữ liệu )](#Ví-dụ-riêng-về-Update)  
    * [Ví dụ riêng về Delete ( tạo )](#Ví-dụ-riêng-về-Delete)
-- [Ví dụ về 1 class Servlet](#Ví-dụ-về-1-class-Servlet)
+- [Ví dụ về 1 class Servlet Login Basic](#Ví-dụ-về-1-class-Servlet-Login-Basic)
 ## Lý Thuyết
 - [Đến Menu](#notebook_with_decorative_cover-Table-of-Contents)
 <br/>+ java.sql.Statement là một interface trong thư viện JDBC cung cấp các phương thức để thực hiện các câu lệnh SQL trên một cơ sở dữ liệu. Để sử dụng interface này, bạn cần tạo một đối tượng của interface bằng cách gọi phương thức createStatement() trên đối tượng Connection. Sau đó, bạn có thể sử dụng các phương thức của interface để thực hiện các câu lệnh SQL như SELECT, INSERT, UPDATE, DELETE, và các câu lệnh khác.
@@ -346,7 +346,7 @@ Sử dụng try-with-resources để tự động đóng PreparedStatement: Try-
     }
 }
 ```
-## Ví dụ về 1 class Servlet
+## Ví dụ về 1 class Servlet Login Basic
 ```java
 
 import dao.*;
