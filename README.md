@@ -404,5 +404,13 @@ public class LoginServlet extends HttpServlet {
     }// </editor-fold>
 
 }
-
 ```
+Đây là code để xử lý việc đăng nhập của một ứng dụng web. Trong code trên, có một số khái niệm cần giải thích:
+
+request và response là đối tượng của lớp HttpServletRequest và HttpServletResponse tương ứng, được sử dụng để lấy thông tin từ yêu cầu (request) và trả lại câu trả lời (response) cho người dùng.
+
+Cookie là một đối tượng để lưu trữ thông tin trên trình duyệt của người dùng. Khi người dùng truy cập lại trang web, các cookie có thể được sử dụng để hiển thị các thông tin tương ứng. Trong code trên, chúng ta tạo hai đối tượng Cookie lưu trữ tên đăng nhập và mật khẩu, và đặt thời gian sống của chúng bằng phương thức setMaxAge(60).
+
+UserDAO là một lớp có chức năng lấy thông tin người dùng từ cơ sở dữ liệu. Trong code trên, chúng ta tạo một đối tượng dao và gọi phương thức getUser(username, password) để lấy thông tin người dùng từ cơ sở dữ liệu.
+
+HttpSession là một đối tượng để lưu trữ thông tin trên máy chủ, và có thể được sử dụng để lưu trữ thông tin về người dùng sau khi đăng nhập thành công. Trong một ứng dụng web, mỗi người dùng sẽ có một HttpSession riêng, và chúng ta có thể sử dụng nó để lưu trữ các thông tin về người dùng như tên người dùng, quyền hạn, v.v.
