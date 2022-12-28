@@ -3,6 +3,9 @@
 - [Tạo 1 class DBContext](#Tạo-1-class-DBContext)
 - [Ví dụ về 1 hàm class DAO có đẩy đủ CRUD](#Ví-dụ-về-1-hàm-class-DAO-có-đẩy-đủ-CRUD)
    * [Ví dụ riêng về Create ( tạo )](#Ví-dụ-riêng-về-Create) 
+   * [Ví dụ riêng về Read ( đọc dữ liệu )](#Ví-dụ-riêng-về-Read)  
+   * [Ví dụ riêng về Update ( sửa dữ liệu )](#Ví-dụ-riêng-về-Update)  
+   * [Ví dụ riêng về Delete ( tạo )](#Ví-dụ-riêng-về-Delete)
 # Training_SP_PRJ_JAVA_WEB
 
 Tải phần mềm code ở trên 
@@ -222,4 +225,89 @@ Sử dụng try-with-resources để tự động đóng PreparedStatement: Try-
             System.out.println("" + e);
         } 
     }
+```
+## Ví dụ riêng về Read
+- [Đến Menu](#notebook_with_decorative_cover-Table-of-Contents) <br/>
+Sử dụng try-with-resources để tự động đóng PreparedStatement: Try-with-resources là một tính năng trong Java 8 cho phép bạn tự động đóng các đối tượng cần đóng sau khi sử dụng, nhờ đó bạn không cần phải viết mã đóng riêng cho chúng. 
+<br/>  Phương thức sau để lấy sinh viên theo ID:
+```java
+public Student getStudentById(int id) {
+    Student student = null;
+    String sql = "SELECT * FROM [dbo].[Student] WHERE [Id] = ?";
+    try (PreparedStatement pre = connection.prepare Statement(sql)) {
+        pre.setInt(1, id);
+        try (ResultSet rs = pre.execute Query()) {
+            if (rs.next()) {
+                String name = rs.getString("Name");
+                Date date = rs.getDate("Date");
+                boolean gender = rs.getBoolean("Gender");
+                int classId = rs.getInt("ClassId");
+                student = new Student(id, name, date, gender, classId);
+            }
+        }
+    } catch (Exception e) {
+        System.out.println("" + e);
+    }
+    return student;
+}
+```
+<br/>  Phương thức sau để lấy lấy danh sách lớp học : 
+```java
+    public List<ClassRoom> getAllClassRooms() {
+        List<ClassRoom> classRooms = new ArrayList<>();
+        String sql = "SELECT * FROM [dbo].[ClassRoom]";
+        try ( Statement stmt = connection.createStatement();  ResultSet rs = stmt.executeQuery(sql)) {
+            while (rs.next()) {
+                int id = rs.getInt("Id");
+                String name = rs.getString("Name");
+                ClassRoom classRoom = new ClassRoom(id, name);
+                classRooms.add(classRoom);
+            }
+        } catch (Exception e) {
+            System.out.println("" + e);
+        }
+        return classRooms;
+    } 
+```
+## Ví dụ riêng về Update
+- [Đến Menu](#notebook_with_decorative_cover-Table-of-Contents) <br/>
+Sử dụng try-with-resources để tự động đóng PreparedStatement: Try-with-resources là một tính năng trong Java 8 cho phép bạn tự động đóng các đối tượng cần đóng sau khi sử dụng, nhờ đó bạn không cần phải viết mã đóng riêng cho chúng. 
+<br/> Phương thức sau để cập nhật thông tin sinh viên trong cơ sở dữ liệu:
+```java
+     public void updateStudent(Student student) {
+        String sql = "UPDATE [dbo].[Student]\n"
+                + "   SET [Name] = ?\n"
+                + "      ,[Date] = ?\n"
+                + "      ,[Gender] = ?\n"
+                + "      ,[ClassId] = ?\n"
+                + " WHERE [Id] = ?";
+        try ( PreparedStatement pre = connection.prepareStatement(sql)) {
+            pre.setString(1, student.getName());
+            java.sql.Date DateSql = new java.sql.Date(student.getDate().getTime());
+            pre.setDate(2, DateSql);
+            pre.setBoolean(3, student.isGender());
+            pre.setInt(4, student.getClassRoom().getId());
+            pre.setInt(5, student.getId());
+            pre.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println("" + e);
+        }
+    }
+}
+```
+## Ví dụ riêng về Delete
+- [Đến Menu](#notebook_with_decorative_cover-Table-of-Contents) <br/>
+Sử dụng try-with-resources để tự động đóng PreparedStatement: Try-with-resources là một tính năng trong Java 8 cho phép bạn tự động đóng các đối tượng cần đóng sau khi sử dụng, nhờ đó bạn không cần phải viết mã đóng riêng cho chúng. 
+<br/> Xóa Sinh Viên theo id
+```java
+    public void deleteStudent(int id) {
+    String sql = "DELETE FROM [dbo].[Student] WHERE [Id] = ?";
+    try (PreparedStatement pre = connection.prepareStatement(sql)) {
+        pre.setInt(1, id);
+        pre.executeUpdate();
+    } catch (Exception e) {
+        System.out.println("" + e);
+    }
+}
 ```
