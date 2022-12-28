@@ -407,13 +407,13 @@ public class LoginServlet extends HttpServlet {
 ```
 Đây là code để xử lý việc đăng nhập của một ứng dụng web. Trong code trên, có một số khái niệm cần giải thích:
 
-request và response là đối tượng của lớp HttpServletRequest và HttpServletResponse tương ứng, được sử dụng để lấy thông tin từ yêu cầu (request) và trả lại câu trả lời (response) cho người dùng.
+```request``` và ```response``` là đối tượng của lớp ```HttpServletRequest``` và ```HttpServletResponse``` tương ứng, được sử dụng để lấy thông tin từ yêu cầu ```request``` và trả lại câu trả lời ```response``` cho người dùng.
 
-Cookie là một đối tượng để lưu trữ thông tin trên trình duyệt của người dùng. Khi người dùng truy cập lại trang web, các cookie có thể được sử dụng để hiển thị các thông tin tương ứng. Trong code trên, chúng ta tạo hai đối tượng Cookie lưu trữ tên đăng nhập và mật khẩu, và đặt thời gian sống của chúng bằng phương thức setMaxAge(60).
+Cookie là một đối tượng để lưu trữ thông tin trên trình duyệt của người dùng. Khi người dùng truy cập lại trang web, các cookie có thể được sử dụng để hiển thị các thông tin tương ứng. Trong code trên, chúng ta tạo hai đối tượng ```Cookie``` lưu trữ tên đăng nhập và mật khẩu, và đặt thời gian sống của chúng bằng phương thức ```setMaxAge(60)```.
 
-UserDAO là một lớp có chức năng lấy thông tin người dùng từ cơ sở dữ liệu. Trong code trên, chúng ta tạo một đối tượng dao và gọi phương thức getUser(username, password) để lấy thông tin người dùng từ cơ sở dữ liệu.
+```UserDAO``` là một lớp có chức năng lấy thông tin người dùng từ cơ sở dữ liệu. Trong code trên, chúng ta tạo một đối tượng dao và gọi phương thức ```getUser(username, password)``` để lấy thông tin người dùng từ cơ sở dữ liệu.
 
-HttpSession là một đối tượng để lưu trữ thông tin trên máy chủ, và có thể được sử dụng để lưu trữ thông tin về người dùng sau khi đăng nhập thành công. Trong một ứng dụng web, mỗi người dùng sẽ có một HttpSession riêng, và chúng ta có thể sử dụng nó để lưu trữ các thông tin về người dùng như tên người dùng, quyền hạn, v.v.
+```HttpSession``` là một đối tượng để lưu trữ thông tin trên máy chủ, và có thể được sử dụng để lưu trữ thông tin về người dùng sau khi đăng nhập thành công. Trong một ứng dụng web, mỗi người dùng sẽ có một ```HttpSession``` riêng, và chúng ta có thể sử dụng nó để lưu trữ các thông tin về người dùng như tên người dùng, quyền hạn, v.v.
 
 Trang Web gửi lên servlet demo trên
 ```jsp
@@ -446,7 +446,7 @@ Trang Web gửi lên servlet demo trên
 ```<form action="login" method="post" > ```là một thẻ HTML để tạo ra một form đăng nhập. Thuộc tính action xác định đường dẫn đến servlet sẽ xử lý yêu cầu, và thuộc tính method xác định phương thức gửi yêu cầu (trong trường hợp này là post).
 
 ``` ${cookie.user.value} và ${cookie.pass.value} ```là các EL (Expression Language) để lấy giá trị của cookie tên đăng nhập và mật khẩu.
-``` <% if (request.getSession().getAttribute("user")!=null) { %> ```là một khối scriptlet để kiểm tra xem người dùng có đăng nhập hay không. Nếu đã đăng nhập, sẽ chuyển hướng người dùng đến trang danh sách bằng cách sử dụng phương thức sendRedirect("list") của đối tượng HttpServletResponse.
+``` <% if (request.getSession().getAttribute("user")!=null) { %> ```là một khối scriptlet để kiểm tra xem người dùng có đăng nhập hay không. Nếu đã đăng nhập, sẽ chuyển hướng người dùng đến trang danh sách bằng cách sử dụng phương thức ```sendRedirect("list")``` của đối tượng HttpServletResponse.
 
 ``` <h1>Login!</h1> ```là một thẻ HTML để tạo ra một tiêu đề cấp 1 cho trang.
 
