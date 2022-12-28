@@ -10,7 +10,7 @@ Tải phần mềm code ở trên bằng cách clone xuống hoặc tải file z
    * [Ví dụ riêng về Read ( đọc dữ liệu )](#Ví-dụ-riêng-về-Read)  
    * [Ví dụ riêng về Update ( sửa dữ liệu )](#Ví-dụ-riêng-về-Update)  
    * [Ví dụ riêng về Delete ( tạo )](#Ví-dụ-riêng-về-Delete)
-
+- [Ví dụ về 1 class Servlet](#Ví-dụ-về-1-class-Servlet)
 ## Lý Thuyết
 - [Đến Menu](#notebook_with_decorative_cover-Table-of-Contents)
 <br/>+ java.sql.Statement là một interface trong thư viện JDBC cung cấp các phương thức để thực hiện các câu lệnh SQL trên một cơ sở dữ liệu. Để sử dụng interface này, bạn cần tạo một đối tượng của interface bằng cách gọi phương thức createStatement() trên đối tượng Connection. Sau đó, bạn có thể sử dụng các phương thức của interface để thực hiện các câu lệnh SQL như SELECT, INSERT, UPDATE, DELETE, và các câu lệnh khác.
@@ -345,4 +345,64 @@ Sử dụng try-with-resources để tự động đóng PreparedStatement: Try-
         System.out.println("" + e);
     }
 }
+```
+## Ví dụ về 1 class Servlet
+```java
+
+import dao.*;
+import java.io.*;
+import javax.servlet.ServletException;
+import javax.servlet.http.*; 
+import model.*;
+
+public class LoginServlet extends HttpServlet {
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        if (request.getSession().getAttribute("user") != null) {
+            response.sendRedirect("list");
+        } else {
+            request.getRequestDispatcher("Login.jsp").forward(request, response);
+        }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+
+        //cookie 
+        Cookie u = new Cookie("user", username);
+        Cookie p = new Cookie("pass", password);
+        //set time 
+        u.setMaxAge(60);
+        p.setMaxAge(60);
+        //add cookie
+        response.addCookie(u);
+        response.addCookie(p);
+
+        UserDAO dao = new UserDAO();
+        User user = dao.getUser(username, password);
+        if (user != null) {
+            //login sucess
+            HttpSession session = request.getSession();
+            session.setAttribute("user", user);
+            response.sendRedirect("list");
+
+        } else {
+            //login fail   
+            request.setAttribute("mess", "username or password incorrect");
+            request.getRequestDispatcher("Login.jsp").forward(request, response);
+        }
+    }
+
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
+
+}
+
 ```
