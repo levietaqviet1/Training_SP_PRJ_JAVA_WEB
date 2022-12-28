@@ -13,14 +13,12 @@ Tải phần mềm code ở trên bằng cách clone xuống hoặc tải file z
 
 ## Lý Thuyết
 - [Đến Menu](#notebook_with_decorative_cover-Table-of-Contents)
- <br/><br/>
- + java.sql.Statement là một interface trong thư viện JDBC cung cấp các phương thức để thực hiện các câu lệnh SQL trên một cơ sở dữ liệu. Để sử dụng interface này, bạn cần tạo một đối tượng của interface bằng cách gọi phương thức createStatement() trên đối tượng Connection. Sau đó, bạn có thể sử dụng các phương thức của interface để thực hiện các câu lệnh SQL như SELECT, INSERT, UPDATE, DELETE, và các câu lệnh khác.
+<br/>+ java.sql.Statement là một interface trong thư viện JDBC cung cấp các phương thức để thực hiện các câu lệnh SQL trên một cơ sở dữ liệu. Để sử dụng interface này, bạn cần tạo một đối tượng của interface bằng cách gọi phương thức createStatement() trên đối tượng Connection. Sau đó, bạn có thể sử dụng các phương thức của interface để thực hiện các câu lệnh SQL như SELECT, INSERT, UPDATE, DELETE, và các câu lệnh khác.
 ```java
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM users WHERE age > 18");
 ```
-<br/>
-+ java.sql.PreparedStatement là một interface trong thư viện Java Database Connectivity (JDBC), được sử dụng để thực hiện các câu lệnh SQL trên một cơ sở dữ liệu. Nó tương tự như java.sql. Statement, nhưng có một số ưu điểm khác nhau.
+<br/>+ java.sql.PreparedStatement là một interface trong thư viện Java Database Connectivity (JDBC), được sử dụng để thực hiện các câu lệnh SQL trên một cơ sở dữ liệu. Nó tương tự như java.sql. Statement, nhưng có một số ưu điểm khác nhau.
 <br/>
 Điểm khác biệt chính giữa java.sql.Prepared Statement và java.sql. Statement là java.sql.Prepared Statement được dùng để thực hiện các câu lệnh SQL đã được biên dịch sẵn, trong khi java.sql. Statement thì không. Điều này có nghĩa là khi sử dụng java.sql.Prepared Statement, câu lệnh SQL sẽ được biên dịch trước đó và lưu trữ trong bộ nhớ, và khi bạn thực hiện câu lệnh, nó sẽ được thực thi ngay lập tức. Điều này có thể giúp tăng hiệu suất và giảm thời gian xử lý khi bạn thực hiện các câu lệnh SQL trên cơ sở dữ liệu.
 ```java
@@ -29,7 +27,6 @@ Tải phần mềm code ở trên bằng cách clone xuống hoặc tải file z
             //tạo bảng chứa giá trị của câu lệnh
             ResultSet rs = pre.executeQuery();
 ```
-<br/>
 <br/>+ java.sql.ResultSet là một interface trong Java trong gói java.sql. Nó là một đối tượng để lưu trữ kết quả từ câu lệnh SELECT truy vấn trong cơ sở dữ liệu. Nó cung cấp các phương thức để truy xuất các dòng dữ liệu và các cột trong kết quả từ câu lệnh SELECT.
 
 Ví dụ, bạn có thể sử dụng phương thức next() để di chuyển đến dòng tiếp theo trong kết quả, hoặc sử dụng phương thức getInt() để lấy giá trị của một cột số nguyên trong dòng hiện tại.
