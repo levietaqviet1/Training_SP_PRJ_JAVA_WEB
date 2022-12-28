@@ -414,3 +414,30 @@ Cookie là một đối tượng để lưu trữ thông tin trên trình duyệ
 UserDAO là một lớp có chức năng lấy thông tin người dùng từ cơ sở dữ liệu. Trong code trên, chúng ta tạo một đối tượng dao và gọi phương thức getUser(username, password) để lấy thông tin người dùng từ cơ sở dữ liệu.
 
 HttpSession là một đối tượng để lưu trữ thông tin trên máy chủ, và có thể được sử dụng để lưu trữ thông tin về người dùng sau khi đăng nhập thành công. Trong một ứng dụng web, mỗi người dùng sẽ có một HttpSession riêng, và chúng ta có thể sử dụng nó để lưu trữ các thông tin về người dùng như tên người dùng, quyền hạn, v.v.
+
+Trang Web gửi lên servlet demo trên
+```jsp
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+    </head>
+    <body>
+    <%
+    if (request.getSession().getAttribute("user")!=null) {
+            response.sendRedirect("list");
+        }
+    %>
+        <h1>Login!</h1>
+        <form action="login" method="post" >
+            Username : <input type="text" name="username" value="${cookie.user.value}" ><br>
+            Pass : <input type="text" name="password" value="${cookie.pass.value}" ><br>
+            <input type="submit" value="Login" >
+            ${requestScope.mess}
+        </form>
+    </body>
+</html>
+
+```
