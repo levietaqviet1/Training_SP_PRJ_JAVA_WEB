@@ -6,7 +6,7 @@ To develop and deploy a java web application on `WINDOW`, you need to follow `6`
 - [3> Installing Apache NetBeans IDE 13](#3-Installing-Apache-NetBeans-IDE-13)
 - [4> Integrating Apache NetBeans IDE 13 with Apache Tomcat.](#4-Integrating-Apache-NetBeans-IDE-13-with-Apache-Tomcat)
 ## 1 Installing JDK 8u321
-Page: <a href=" https://www.oracle.com/java/technologies/downloads/">
+Page: <a href=" https://www.oracle.com/java/technologies/downloads/" target="_blank">
     https://www.oracle.com/java/technologies/downloads/
   </a>  
   <br/>
