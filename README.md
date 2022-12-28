@@ -1,7 +1,7 @@
 <!-- Table of Contents -->
 # :notebook_with_decorative_cover: Table of Contents
-- [About the Project](#Tạo-1-class-DBContext)
-
+- [Tạo 1 class DBContext](#Tạo-1-class-DBContext)
+- [Ví dụ về 1 hàm class DAO có đẩy đủ CRUD](#Ví-dụ-về-1-hàm-class-DAO-có-đẩy-đủ-CRUD)
 # Training_SP_PRJ_JAVA_WEB
 
 Tải phần mềm code ở trên 
