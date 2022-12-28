@@ -2,7 +2,7 @@
 # :notebook_with_decorative_cover: Table of Contents
 - [Tạo 1 class DBContext](#Tạo-1-class-DBContext)
 - [Ví dụ về 1 hàm class DAO có đẩy đủ CRUD](#Ví-dụ-về-1-hàm-class-DAO-có-đẩy-đủ-CRUD)
-    * Ví dụ riêng về Create ( tạo ) (#Ví-dụ-riêng-về-Create)
+    * [Ví dụ riêng về Create ( tạo )] (#Ví-dụ-riêng-về-Create)
 # Training_SP_PRJ_JAVA_WEB
 
 Tải phần mềm code ở trên 
@@ -195,8 +195,8 @@ public class StudentDAO {
 
 }
 ```
-##Ví dụ riêng về Create
-- [Đến Menu](#notebook_with_decorative_cover-Table-of-Contents)
+## Ví dụ riêng về Create
+- [Đến Menu](#notebook_with_decorative_cover-Table-of-Contents) <br/>
 Sử dụng try-with-resources để tự động đóng PreparedStatement: Try-with-resources là một tính năng trong Java 8 cho phép bạn tự động đóng các đối tượng cần đóng sau khi sử dụng, nhờ đó bạn không cần phải viết mã đóng riêng cho chúng. 
 ```java
         public void insertStudent(Student student) {
