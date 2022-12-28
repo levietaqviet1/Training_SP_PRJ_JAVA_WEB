@@ -1,10 +1,9 @@
   <h3>Training_SP_PRJ_JAVA_WEB</h3><br/>
   <a href="https://github.com/levietaqviet1/Training_SP_PRJ_JAVA_WEB/blob/main/Cai_Phan_Mem.md">
    Tải phần mềm code và set up môi trường
-  </a> 
-  ##
-  <br /> 
+  </a>  
 Trong đó có 1 bài đầy đủ CRUD tên Project là DemoDatabase ( Bài mầu nên code có thể chưa được tối ưu, nên xem tài liệu dưới làm lại )
+<br/>
 <!-- Table of Contents -->
 # :notebook_with_decorative_cover: Table of Contents
 - [Lý Thuyết](#Lý-Thuyết)
