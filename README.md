@@ -455,6 +455,7 @@ Trang Web gửi lên servlet demo trên
 
 ``` <input type="submit" value="Login" > ```là một thẻ HTML để tạo ra một nút đăng nhập. Người dùng có thể bấm vào nút này để gửi yêu cầu đăng nhập đến servlet.
 ## Ví dụ về 1 class Servlet Trả về 1 List Danh Sách
+- [Đến Menu](#notebook_with_decorative_cover-Table-of-Contents) <br/>
 ```java
 import dao.*; 
 import java.io.*;
@@ -493,3 +494,69 @@ public class ListServlet extends HttpServlet {
 
 Trong phương thức ```doGet()```, đầu tiên servlet sẽ kiểm tra xem người dùng có đăng nhập hay không bằng cách lấy đối tượng ```HttpSession``` và kiểm tra xem có một thuộc tính ```user``` hay không. ```Nếu không có```, servlet sẽ ```chuyển hướng người dùng``` đến trang đăng nhập bằng cách sử dụng phương thức ```sendRedirect("Login.jsp")```.
 Sau đó, servlet sẽ tạo một đối tượng ```StudentDAO``` và sử dụng phương thức ```getAll()``` để lấy danh sách tất cả sinh viên từ cơ sở dữ liệu. Sau đó, servlet sẽ lưu danh sách sinh viên vào ```request``` bằng cách sử dụng phương thức ```setAttribute("list", listStudent)``` và sử dụng phương thức ```forward(request, response)``` để chuyển hướng người dùng đến trang hiển thị danh sách sinh viên (trang ```JSP List_JSTL.jsp```).
+
+Trang Web được servlet demo trên gửi sang
+```jsp
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+    </head>
+    <body>
+        <h1>Hello : <a href="logout" ><button>Loggout</button> </a> </h1>
+        <h1>List Student</h1>  <a href="next-add" ><button>Add new</button> </a>
+        <table border="1" >
+            <tr>
+                <td>Id</td>
+                <td>Name</td>
+                <td>Date</td>
+                <td>Gender</td>
+                <td>Class name</td>
+                <td>Operation</td>
+            </tr>
+            <c:forEach items="${requestScope.list}" var="f" >
+                <tr>
+                    <td>${f.id}</td>
+                    <td>${f.name} || ${fn:toUpperCase(f.name)} </td>
+                    <td>${f.date}</td>
+                    <td>
+                        <c:if test="${f.gender == true}">
+                            <c:out value="Nam" />
+                        </c:if>
+                        <c:if test="${f.gender != true}">
+                            <c:out value="Nữ" />
+                        </c:if>
+                    </td>
+                    <td>${f.classRoom.name}</td>
+                    <td>
+                        <a href="next-edit?id=${f.id}" ><button>Edit</button></a>
+                        <a href="delete?id=${f.id}" ><button>Delete</button>
+                    </td>
+                </tr>
+            </c:forEach>
+        </table>
+    </body>
+</html>
+```
+Trong code trên, trang `JSP` hiển thị một bảng danh sách sinh viên và cho phép người dùng thực hiện các thao tác như sửa, xoá sinh viên.
+Cụ thể:
+
+Dòng `<h1>Hello : <a href="logout" ><button>Loggout</button> </a> </h1>` hiển thị một nút đăng xuất. Khi người dùng bấm vào nút này, trình duyệt sẽ gửi yêu cầu đăng xuất đến `servlet` tương ứng.
+
+Dòng `<h1>List Student</h1> <a href="next-add" ><button>Add new</button> </a>` hiển thị tiêu đề "List Student" và một nút "Add new" để cho phép người dùng thêm sinh viên mới.
+
+Dòng `<c:forEach items="${requestScope.list}" var="f" >` sử dụng tag `<c:forEach>` của `JSTL` để `lặp qua từng phần tử trong danh sách sinh viên` (biến `requestScope.list`) và gán từng phần tử vào `biến f`.
+
+Các dòng `<td>${f.id}</td>, <td>${f.name} || ${fn:toUpperCase(f.name)} </td>, <td>${f.date}</td>, <td>${f.classRoom.name}</td>` sử dụng `EL` để lấy các thuộc tính của sinh viên (id, tên, ngày sinh, lớp học) và hiển thị chúng trong các ô tương ứng trong bảng. Trong dòng `<td>${f.name} || ${fn:toUpperCase(f.name)} </td>`,...
+
+Hàm `fn:toUpperCase` là một hàm của `JSTL Functions`, nó sẽ chuyển chuỗi được truyền vào `thành chữ hoa`. Ví dụ, khi sử dụng `${fn:toUpperCase("hello")}`, hàm này sẽ trả về chuỗi `"HELLO"`.
+
+Trong code trên, hàm này được sử dụng để chuyển tên của sinh viên thành chữ hoa và hiển thị kết quả cùng với tên gốc của sinh viên dòng `<td>${f.name} || ${fn:toUpperCase(f.name)} </td>)`.
+
+Dòng `<td> <c:if test="${f.gender == true}"> <c:out value="Nam" /> </c:if> <c:if test="${f.gender != true}"> <c:out value="Nữ" /> </c:if> </td>` sử dụng tag `<c:if>` để kiểm tra giá trị của thuộc tính gender của sinh viên.Nếu thuộc tính gender của sinh viên có giá trị là true (tức là sinh viên là `Nam`), thì tag `<c:if>` sẽ hiển thị chuỗi "Nam" trong ô tương ứng của bảng. Ngược lại, nếu thuộc tính gender có giá trị là false (tức là sinh viên là `Nữ`), thì tag `<c:if>` sẽ hiển thị chuỗi "Nữ" trong ô tương ứng của bảng.
+
+Dòng `<td> <a href="next-edit?id=${f.id}" ><button>Edit</button></a> <a href="delete?id=${f.id}" ><button>Delete</button> </td>` hiển thị hai nút "Edit" và "Delete" cho phép người dùng thực hiện các thao tác sửa và xoá sinh viên tương ứng.
