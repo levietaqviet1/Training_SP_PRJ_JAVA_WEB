@@ -183,9 +183,7 @@ Có nhiều cách viết DBContext
 Dạng 1:
 
 ```java
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class DBContext {
 
@@ -349,6 +347,21 @@ public class DBContext {
     private final String portNumber = "1433";
     private final String userID = "sa";
     private final String password = "123";
+```
+
+Dạng 4 khá lạ chưa có demo hay giải thích nhiều nên dưới là code demo sử dụng dạng 4
+
+```java
+public class UserDAO extends DBContext {
+    public boolean checkLogin(String username, String password) {
+        try ( ResultSet rs = executeQuery("SELECT * FROM [User] WHERE Username = ? AND Password = ?", username, password)) {
+            return rs.next();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+  }
 ```
 
 ## Ví dụ về 1 hàm class DAO có đẩy đủ CRUD
