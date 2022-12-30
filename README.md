@@ -9,7 +9,7 @@
 # :notebook_with_decorative_cover: Table of Contents
 - [Lý Thuyết](#Lý-Thuyết)
 - [Lý Thuyết MVC](#Lý-Thuyết-MVC)
-- [Ví dụ về một ứng dụng web sử dụng mô hình MVC (Model-View-Controller) ](#Ví-dụ-về-một-ứng-dụng-web-sử-dụng-mô-hình-MVC-(Model-View-Controller))
+- [Ví dụ về một ứng dụng web sử dụng mô hình MVC (Model-View-Controller) ](#ví-dụ-về-một-ứng-dụng-web-sử-dụng-mô-hình-mvc-model-view-controller)
 - [Tạo 1 class DBContext](#Tạo-1-class-DBContext)
 - [Ví dụ về 1 hàm class DAO có đẩy đủ CRUD](#Ví-dụ-về-1-hàm-class-DAO-có-đẩy-đủ-CRUD)
    * [Ví dụ riêng về Create ( tạo )](#Ví-dụ-riêng-về-Create) 
