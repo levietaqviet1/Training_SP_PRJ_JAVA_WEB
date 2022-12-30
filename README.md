@@ -72,7 +72,7 @@ try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
 
 Khi người dùng thực hiện một hành động trên trang web, controller nhận được yêu cầu từ trình duyệt web và sẽ giao tiếp với model để lấy dữ liệu từ cơ sở dữ liệu hoặc cập nhật dữ liệu trong
 
-##Ví dụ về một ứng dụng web sử dụng mô hình MVC (Model-View-Controller)
+## Ví dụ về một ứng dụng web sử dụng mô hình MVC (Model-View-Controller)
 - [Đến Menu](#notebook_with_decorative_cover-Table-of-Contents)
 `Note`: Xem hướng dẫn cài môi trường và mở code DemoDatabase xem trước
 
