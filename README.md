@@ -74,6 +74,7 @@ Khi người dùng thực hiện một hành động trên trang web, controller
 
 ## Ví dụ về một ứng dụng web sử dụng mô hình MVC (Model-View-Controller)
 - [Đến Menu](#notebook_with_decorative_cover-Table-of-Contents)
+
 `Note`: Xem hướng dẫn cài môi trường và mở code DemoDatabase xem trước
 
 Đây là một ví dụ về một ứng dụng web sử dụng mô hình MVC (Model-View-Controller) với servlets và JSP:
