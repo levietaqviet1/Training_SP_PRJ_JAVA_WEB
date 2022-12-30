@@ -177,6 +177,11 @@ Tạo 1 view  JSP
 
 ## Tạo 1 class DBContext 
 - [Đến Menu](#notebook_with_decorative_cover-Table-of-Contents)
+
+Có nhiều cách viết DBContext
+
+Dạng 1:
+
 ```java
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -203,6 +208,147 @@ public class DBContext {
     private final String userID = "sa";
     private final String password = "123";
 }
+```
+
+Dạng 2:
+
+```java
+import java.sql.*;
+import java.util.logging.*;
+ 
+public class DBContext {
+    
+    protected Connection con;
+    public DBContext2()
+    {
+        try {
+            // Edit URL , username, password to authenticate with your MS SQL Server
+            String url = "jdbc:sqlserver://ADMIN-PC:1433;databaseName=DemoStudent";
+            String username = "sa";
+            String password = "123";
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            con = DriverManager.getConnection(url, username, password);
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+}
+```
+
+Dạng 3: Tối ưu hơn từ Dạng 2
+
+```java
+
+import java.sql.*;
+import java.util.logging.*;
+import java.sql.*;
+
+public class DBContext{
+
+    public static void main(String[] args) {
+        // Edit URL, username, and password to authenticate with your MS SQL Server
+        String url = "jdbc:sqlserver://ADMIN-PC:1433;databaseName=DemoStudent";
+        String username = "sa";
+        String password = "123";
+
+        // Load the JDBC driver
+        try {
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        // Establish a connection to the database
+        Connection con = null;
+        try {
+            con = DriverManager.getConnection(url, username, password);
+            System.out.println("Connected to the database");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Close the connection
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+}
+
+```
+
+Dạng 4:
+
+```java
+
+import java.sql.*;
+
+public class DBContext {
+
+    protected Connection connection;
+
+    public PreparedStatement createStatement(String sql, Object... params) {
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+
+            for (int i = 0; i < params.length; i++) {
+                ps.setObject(i + 1, params[i]);
+            }
+            return ps;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public int executeUpdate(String sql, Object... params) {
+        try {
+            return createStatement(sql, params).executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
+    public ResultSet executeQuery(String sql, Object... params) {
+        try {
+            return createStatement(sql, params).executeQuery();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public void execute(String sql, Object... params) {
+        try {
+            createStatement(sql, params).execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public DBContext() {
+        try {
+            connection = getConnection();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Connection getConnection() throws Exception {
+        String url = "jdbc:sqlserver://" + serverName + ":" + portNumber + ";databaseName=" + dbName;
+        Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+        return DriverManager.getConnection(url, userID, password);
+    }
+
+    private final String serverName = "localhost";
+    private final String dbName = "data";
+    private final String portNumber = "1433";
+    private final String userID = "sa";
+    private final String password = "123";
 ```
 
 ## Ví dụ về 1 hàm class DAO có đẩy đủ CRUD
