@@ -8,6 +8,8 @@
 <!-- Table of Contents -->
 # :notebook_with_decorative_cover: Table of Contents
 - [Lý Thuyết](#Lý-Thuyết)
+- [Lý Thuyết MVC](#Lý-Thuyết-MVC)
+- [Ví dụ về một ứng dụng web sử dụng mô hình MVC (Model-View-Controller) ](#Ví-dụ-về-một-ứng-dụng-web-sử-dụng-mô-hình-MVC-(Model-View-Controller))
 - [Tạo 1 class DBContext](#Tạo-1-class-DBContext)
 - [Ví dụ về 1 hàm class DAO có đẩy đủ CRUD](#Ví-dụ-về-1-hàm-class-DAO-có-đẩy-đủ-CRUD)
    * [Ví dụ riêng về Create ( tạo )](#Ví-dụ-riêng-về-Create) 
@@ -18,7 +20,14 @@
 - [Ví dụ về 1 class Servlet Trả về 1 List Danh Sách](#Ví-dụ-về-1-class-Servlet-Trả-về-1-List-Danh-Sách)
 ## Lý Thuyết
 - [Đến Menu](#notebook_with_decorative_cover-Table-of-Contents)
-<br/>+ java.sql.Statement là một interface trong thư viện JDBC cung cấp các phương thức để thực hiện các câu lệnh SQL trên một cơ sở dữ liệu. Để sử dụng interface này, bạn cần tạo một đối tượng của interface bằng cách gọi phương thức createStatement() trên đối tượng Connection. Sau đó, bạn có thể sử dụng các phương thức của interface để thực hiện các câu lệnh SQL như SELECT, INSERT, UPDATE, DELETE, và các câu lệnh khác.
+
+`Java Servlets` là một kỹ thuật lập trình được sử dụng để xây dựng các ứng dụng web trên máy chủ. Servlets là các lớp Java được chạy trên máy chủ và có thể xử lý yêu cầu HTTP từ trình duyệt web của người dùng và trả lại các trang `HTML`, `XML` hoặc các dữ liệu khác đến trình duyệt.
+
+JavaServer Pages (`JSP`) là một kỹ thuật lập trình được sử dụng để xây dựng các trang web động trên máy chủ. `JSP` là các tệp HTML được mở rộng bằng các thẻ JSP và chứa mã Java để xử lý các yêu cầu từ trình duyệt web của người dùng và trả lại các trang HTML hoặc dữ liệu khác đến trình duyệt.
+
+`Servlets` và `JSP` có thể được sử dụng cùng nhau trong một ứng dụng web để xử lý yêu cầu HTTP và trả lại các trang HTML hoặc dữ liệu khác đến trình duyệt web. Servlets có thể được sử dụng để xử lý các yêu cầu cơ bản và làm việc với cơ sở dữ liệu hoặc các tài nguyên khác trên máy chủ
+ 
++ java.sql.Statement là một interface trong thư viện JDBC cung cấp các phương thức để thực hiện các câu lệnh SQL trên một cơ sở dữ liệu. Để sử dụng interface này, bạn cần tạo một đối tượng của interface bằng cách gọi phương thức createStatement() trên đối tượng Connection. Sau đó, bạn có thể sử dụng các phương thức của interface để thực hiện các câu lệnh SQL như SELECT, INSERT, UPDATE, DELETE, và các câu lệnh khác.
 ```java
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM users WHERE age > 18");
@@ -50,6 +59,109 @@ try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
 }
 
 ```
+## Lý Thuyết MVC
+- [Đến Menu](#notebook_with_decorative_cover-Table-of-Contents)
+
+- Mô hình MVC (Model-View-Controller) là một kiến trúc phần mềm được sử dụng trong lập trình web để phân chia mã nguồn của một ứng dụng web thành ba phần chính:
+
++ Model: Phần của ứng dụng chịu trách nhiệm quản lý dữ liệu và các thao tác liên quan đến dữ liệu, như lấy dữ liệu từ cơ sở dữ liệu, lưu dữ liệu vào cơ sở dữ liệu, xóa dữ liệu, v.v.
+
++ View: Phần của ứng dụng chịu trách nhiệm hiển thị dữ liệu và các thao tác người dùng cho người dùng, như trang web, giao diện người dùng, v.v.
+
++ Controller: Phần của ứng dụng chịu trách nhiệm điều khiển các yêu cầu từ trình duyệt web và giao tiếp với model để lấy dữ liệu từ cơ sở dữ liệu hoặc cập nhật dữ liệu trong cơ sở dữ liệu.
+
+Khi người dùng thực hiện một hành động trên trang web, controller nhận được yêu cầu từ trình duyệt web và sẽ giao tiếp với model để lấy dữ liệu từ cơ sở dữ liệu hoặc cập nhật dữ liệu trong
+
+##Ví dụ về một ứng dụng web sử dụng mô hình MVC (Model-View-Controller)
+- [Đến Menu](#notebook_with_decorative_cover-Table-of-Contents)
+`Note`: Xem hướng dẫn cài môi trường và mở code DemoDatabase xem trước
+
+Đây là một ví dụ về một ứng dụng web sử dụng mô hình MVC (Model-View-Controller) với servlets và JSP:
+
+Package Model: Tạo class User
+```java
+public class User {
+  private int id;
+  private String name;
+  private String email;
+  // constructors, getters, setters
+}
+
+public class UserDao {
+  public User getUser(int id) {
+    // code to retrieve user from database
+  }
+
+  public void updateUser(User user) {
+    // code to update user in database
+  }
+}
+```
+Lớp `User` là một model định nghĩa thông tin về một người dùng, bao gồm các thuộc tính id, name và email. Lớp `UserDao` là một model khác định nghĩa các phương thức để lấy thông tin người dùng từ cơ sở dữ liệu và cập nhật thông tin người dùng trong cơ sở dữ liệu.
+
+Package Dao: Tạo class tên UserDao 
+
+```java
+public class UserDao {
+  // code to establish connection to database
+
+  public User getUser(int id) {
+    User user = null;
+    // code to execute SQL query to retrieve user from database
+    // and populate user object with data from result set
+    return user;
+  }
+
+  public void updateUser(User user) {
+    // code to execute SQL query to update user in database
+  }
+
+  // code to close connection to database
+}
+```
+Trong ví dụ này, phương thức `getUser` sử dụng một câu lệnh `SQL` để lấy thông tin người dùng từ cơ sở dữ liệu dựa trên mã người dùng được truyền vào. Phương thức updateUser sử dụng một câu lệnh SQL khác để cập nhật thông tin người dùng trong cơ sở dữ liệu dựa trên thông tin trong đối tượng User được truyền vào. Các phương thức này cũng có thể bao gồm các lệnh để mở kết nối và đóng kết nối đến cơ sở dữ liệu.
+Package Controller: Tạo Servlet tên UserServlet 
+```java 
+@WebServlet("/users")
+public class UserServlet extends HttpServlet {
+  private UserDao userDao = new UserDao();
+
+  protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+    int userId = Integer.parseInt(request.getParameter("id"));
+    User user = userDao.getUser(userId);
+    request.setAttribute("user", user);
+    request.getRequestDispatcher("user.jsp").forward(request, response);
+  }
+
+  protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+    int userId = Integer.parseInt(request.getParameter("id"));
+    String name = request.getParameter("name");
+    String email = request.getParameter("email");
+    User user = new User(userId, name, email);
+    userDao.updateUser(user);
+    response.sendRedirect("/users?id=" + userId);
+  }
+}
+```
+Servlet `UserServlet` là controller trong mô hình `MVC`, chịu trách nhiệm điều khiển các yêu cầu từ trình duyệt web và giao tiếp với model để lấy dữ liệu từ cơ sở dữ liệu hoặc cập nhật dữ liệu trong cơ sở dữ liệu. Servlet UserServlet có hai phương thức chính là doGet và doPost để xử lý các yêu cầu `GET` và `OST` từ trình duyệt web. Trong phương thức `doGet`, servlet sẽ lấy thông tin người dùng từ cơ sở dữ liệu bằng cách sử dụng lớp UserDao và đặt thông tin người dùng này làm
+
+Tạo 1 view  JSP
+```jsp
+<%@ page import="com.example.model.User" %>
+<html>
+  <body>
+    <form action="/users" method="post">
+      <input type="hidden" name="id" value="<%= request.getAttribute("user").getId() %>">
+      Name: <input type="text" name="name" value="<%= request.getAttribute("user").getName() %>"><br>
+      Email: <input type="text" name="email" value="<%= request.getAttribute("user").getEmail() %>"><br>
+      <input type="submit" value="Update">
+    </form>
+  </body>
+</html>
+```
+
+
+
 ## Tạo 1 class DBContext 
 - [Đến Menu](#notebook_with_decorative_cover-Table-of-Contents)
 ```java
