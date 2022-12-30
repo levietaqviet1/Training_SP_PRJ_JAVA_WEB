@@ -75,6 +75,10 @@ try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
 
 Khi người dùng thực hiện một hành động trên trang web, controller nhận được yêu cầu từ trình duyệt web và sẽ giao tiếp với model để lấy dữ liệu từ cơ sở dữ liệu hoặc cập nhật dữ liệu trong
 
+![MVC](https://wiki.tino.org/wp-content/uploads/2021/05/861566d1-bb29-4620-877b-94b99107eb15.jpg)
+
+
+
 ## Ví dụ về một ứng dụng web sử dụng mô hình MVC (Model-View-Controller)
 - [Đến Menu](#notebook_with_decorative_cover-Table-of-Contents)
 
