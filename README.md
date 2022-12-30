@@ -27,13 +27,15 @@ JavaServer Pages (`JSP`) là một kỹ thuật lập trình được sử dụn
 
 `Servlets` và `JSP` có thể được sử dụng cùng nhau trong một ứng dụng web để xử lý yêu cầu HTTP và trả lại các trang HTML hoặc dữ liệu khác đến trình duyệt web. Servlets có thể được sử dụng để xử lý các yêu cầu cơ bản và làm việc với cơ sở dữ liệu hoặc các tài nguyên khác trên máy chủ
  
+- Những thư viện sẽ dùng trong lúc làm việc với cơ sở dữ liệu ( SQL Server, ... ) có thể đọc sau khi cài xong code
 + java.sql.Statement là một interface trong thư viện JDBC cung cấp các phương thức để thực hiện các câu lệnh SQL trên một cơ sở dữ liệu. Để sử dụng interface này, bạn cần tạo một đối tượng của interface bằng cách gọi phương thức createStatement() trên đối tượng Connection. Sau đó, bạn có thể sử dụng các phương thức của interface để thực hiện các câu lệnh SQL như SELECT, INSERT, UPDATE, DELETE, và các câu lệnh khác.
 ```java
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM users WHERE age > 18");
 ```
-<br/>+ java.sql.PreparedStatement là một interface trong thư viện Java Database Connectivity (JDBC), được sử dụng để thực hiện các câu lệnh SQL trên một cơ sở dữ liệu. Nó tương tự như java.sql. Statement, nhưng có một số ưu điểm khác nhau.
-<br/>
+
++ java.sql.PreparedStatement là một interface trong thư viện Java Database Connectivity (JDBC), được sử dụng để thực hiện các câu lệnh SQL trên một cơ sở dữ liệu. Nó tương tự như java.sql. Statement, nhưng có một số ưu điểm khác nhau.
+
 Điểm khác biệt chính giữa java.sql.Prepared Statement và java.sql. Statement là java.sql.Prepared Statement được dùng để thực hiện các câu lệnh SQL đã được biên dịch sẵn, trong khi java.sql. Statement thì không. Điều này có nghĩa là khi sử dụng java.sql.Prepared Statement, câu lệnh SQL sẽ được biên dịch trước đó và lưu trữ trong bộ nhớ, và khi bạn thực hiện câu lệnh, nó sẽ được thực thi ngay lập tức. Điều này có thể giúp tăng hiệu suất và giảm thời gian xử lý khi bạn thực hiện các câu lệnh SQL trên cơ sở dữ liệu.
 ```java
             // tạo khay chứa câu lệnh 
