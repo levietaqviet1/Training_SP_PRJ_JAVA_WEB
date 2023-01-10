@@ -558,9 +558,9 @@ Sử dụng try-with-resources để tự động đóng PreparedStatement: Try-
 public Student getStudentById(int id) {
     Student student = null;
     String sql = "SELECT * FROM [dbo].[Student] WHERE [Id] = ?";
-    try (PreparedStatement pre = connection.prepare Statement(sql)) {
+    try (PreparedStatement pre = connection.prepareStatement(sql)) {
         pre.setInt(1, id);
-        try (ResultSet rs = pre.execute Query()) {
+        try (ResultSet rs = pre.executeQuery()) {
             if (rs.next()) {
                 String name = rs.getString("Name");
                 Date date = rs.getDate("Date");
